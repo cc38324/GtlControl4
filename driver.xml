@@ -1,0 +1,551 @@
+<devicedata>
+    <copyright>2026 GTL</copyright>
+    <creator>GTL</creator>
+    <manufacturer>GTL</manufacturer>
+    <name>GTL2750 Matrix Amplifier</name>
+    <model>GTL2750</model>
+    <created>2026-05-14</created>
+    <modified>2026-05-14 12:00 PM</modified>
+    <version>1</version>
+    <small>icons/device_sm.png</small>
+    <large>icons/device_lg.png</large>
+    <control>lua_gen</control>
+    <controlmethod>other</controlmethod>
+    <driver>DriverWorks</driver>
+    <agent>False</agent>
+    <combo>False</combo>
+
+    <proxies qty="1">
+        <proxy proxybindingid="5001" name="GTL2750">audio_matrix_switch</proxy>
+    </proxies>
+
+    <connections>
+        <!-- Control connections -->
+        <connection>
+            <id>1000</id>
+            <facing>6</facing>
+            <connectionname>Network</connectionname>
+            <type>1</type>
+            <consumer>True</consumer>
+            <audiosource>False</audiosource>
+            <videosource>False</videosource>
+            <linelevel>False</linelevel>
+            <classes>
+                <class><classname>IP</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>2000</id>
+            <facing>6</facing>
+            <connectionname>Serial (RS-232)</connectionname>
+            <type>1</type>
+            <consumer>True</consumer>
+            <audiosource>False</audiosource>
+            <videosource>False</videosource>
+            <linelevel>False</linelevel>
+            <classes>
+                <class><classname>RS_232</classname></class>
+            </classes>
+        </connection>
+
+        <!-- Audio inputs (4) -->
+        <connection>
+            <id>101</id>
+            <facing>1</facing>
+            <connectionname>Input 1</connectionname>
+            <type>2</type>
+            <consumer>True</consumer>
+            <audiosource>False</audiosource>
+            <videosource>False</videosource>
+            <linelevel>True</linelevel>
+            <classes>
+                <class><classname>STEREO</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>102</id>
+            <facing>1</facing>
+            <connectionname>Input 2</connectionname>
+            <type>2</type>
+            <consumer>True</consumer>
+            <audiosource>False</audiosource>
+            <videosource>False</videosource>
+            <linelevel>True</linelevel>
+            <classes>
+                <class><classname>STEREO</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>103</id>
+            <facing>1</facing>
+            <connectionname>Input 3</connectionname>
+            <type>2</type>
+            <consumer>True</consumer>
+            <audiosource>False</audiosource>
+            <videosource>False</videosource>
+            <linelevel>True</linelevel>
+            <classes>
+                <class><classname>STEREO</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>104</id>
+            <facing>1</facing>
+            <connectionname>Input 4</connectionname>
+            <type>2</type>
+            <consumer>True</consumer>
+            <audiosource>False</audiosource>
+            <videosource>False</videosource>
+            <linelevel>True</linelevel>
+            <classes>
+                <class><classname>STEREO</classname></class>
+            </classes>
+        </connection>
+
+        <!-- Audio outputs (4) -->
+        <connection>
+            <id>201</id>
+            <facing>0</facing>
+            <connectionname>Output 1</connectionname>
+            <type>2</type>
+            <consumer>False</consumer>
+            <audiosource>True</audiosource>
+            <videosource>False</videosource>
+            <linelevel>False</linelevel>
+            <classes>
+                <class><classname>SPEAKER</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>202</id>
+            <facing>0</facing>
+            <connectionname>Output 2</connectionname>
+            <type>2</type>
+            <consumer>False</consumer>
+            <audiosource>True</audiosource>
+            <videosource>False</videosource>
+            <linelevel>False</linelevel>
+            <classes>
+                <class><classname>SPEAKER</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>203</id>
+            <facing>0</facing>
+            <connectionname>Output 3</connectionname>
+            <type>2</type>
+            <consumer>False</consumer>
+            <audiosource>True</audiosource>
+            <videosource>False</videosource>
+            <linelevel>False</linelevel>
+            <classes>
+                <class><classname>SPEAKER</classname></class>
+            </classes>
+        </connection>
+        <connection>
+            <id>204</id>
+            <facing>0</facing>
+            <connectionname>Output 4</connectionname>
+            <type>2</type>
+            <consumer>False</consumer>
+            <audiosource>True</audiosource>
+            <videosource>False</videosource>
+            <linelevel>False</linelevel>
+            <classes>
+                <class><classname>SPEAKER</classname></class>
+            </classes>
+        </connection>
+    </connections>
+
+    <config>
+        <documentation file="www.gtl.com">GTL2750 4x4 Matrix Amplifier driver. Supports control via TCP (device acts as TCP Server, port 8234) or RS-232 (115200, 8N1).</documentation>
+        <script file="driver.lua"/>
+
+        <properties>
+            <property>
+                <name>Driver Version</name>
+                <type>STRING</type>
+                <readonly>true</readonly>
+                <default>1.0.0</default>
+            </property>
+            <property>
+                <name>Debug Mode</name>
+                <type>LIST</type>
+                <items>
+                    <item>Off</item>
+                    <item>Print</item>
+                    <item>Log</item>
+                    <item>Print and Log</item>
+                </items>
+                <default>Off</default>
+            </property>
+            <property>
+                <name>Connection Type</name>
+                <type>LIST</type>
+                <items>
+                    <item>Network</item>
+                    <item>Serial</item>
+                </items>
+                <default>Network</default>
+            </property>
+            <property>
+                <name>IP Address</name>
+                <type>STRING</type>
+                <default>192.168.1.100</default>
+            </property>
+            <property>
+                <name>TCP Port</name>
+                <type>STRING</type>
+                <default>8234</default>
+            </property>
+            <property>
+                <name>Baud Rate</name>
+                <type>LIST</type>
+                <items>
+                    <item>2400</item>
+                    <item>4800</item>
+                    <item>9600</item>
+                    <item>19200</item>
+                    <item>38400</item>
+                    <item>57600</item>
+                    <item>115200</item>
+                </items>
+                <default>115200</default>
+            </property>
+            <property>
+                <name>Device ID</name>
+                <type>STRING</type>
+                <default>FF</default>
+            </property>
+            <property>
+                <name>Status</name>
+                <type>STRING</type>
+                <readonly>true</readonly>
+                <default>Disconnected</default>
+            </property>
+            <property>
+                <name>Current Scene</name>
+                <type>STRING</type>
+                <readonly>true</readonly>
+                <default>Unknown</default>
+            </property>
+            <property>
+                <name>Power</name>
+                <type>LIST</type>
+                <items>
+                    <item>On</item>
+                    <item>Standby</item>
+                </items>
+                <default>On</default>
+            </property>
+        </properties>
+
+        <commands>
+            <command>
+                <name>Standby On</name>
+                <description>Put device into standby (sleep)</description>
+            </command>
+            <command>
+                <name>Standby Off</name>
+                <description>Wake device from standby</description>
+            </command>
+            <command>
+                <name>Recall Scene</name>
+                <description>Recall a stored scene (1-31)</description>
+                <params>
+                    <param>
+                        <name>Scene</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>1</minimum>
+                        <maximum>31</maximum>
+                        <default>1</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Set Output Volume</name>
+                <description>Set output channel volume in 0.1 dB (range -600 to 0)</description>
+                <params>
+                    <param>
+                        <name>Channel</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>0</minimum>
+                        <maximum>4</maximum>
+                        <default>0</default>
+                    </param>
+                    <param>
+                        <name>Volume_0_1dB</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>-600</minimum>
+                        <maximum>0</maximum>
+                        <default>-200</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Set Input Volume</name>
+                <description>Set input channel volume in 0.1 dB (range -600 to 150)</description>
+                <params>
+                    <param>
+                        <name>Channel</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>0</minimum>
+                        <maximum>4</maximum>
+                        <default>0</default>
+                    </param>
+                    <param>
+                        <name>Volume_0_1dB</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>-600</minimum>
+                        <maximum>150</maximum>
+                        <default>0</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Volume Up</name>
+                <description>Increase volume by step in 0.1 dB</description>
+                <params>
+                    <param>
+                        <name>IO</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Output</item>
+                            <item>Input</item>
+                        </items>
+                        <default>Output</default>
+                    </param>
+                    <param>
+                        <name>Channel</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>0</minimum>
+                        <maximum>4</maximum>
+                        <default>0</default>
+                    </param>
+                    <param>
+                        <name>Step_0_1dB</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>1</minimum>
+                        <maximum>255</maximum>
+                        <default>10</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Volume Down</name>
+                <description>Decrease volume by step in 0.1 dB</description>
+                <params>
+                    <param>
+                        <name>IO</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Output</item>
+                            <item>Input</item>
+                        </items>
+                        <default>Output</default>
+                    </param>
+                    <param>
+                        <name>Channel</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>0</minimum>
+                        <maximum>4</maximum>
+                        <default>0</default>
+                    </param>
+                    <param>
+                        <name>Step_0_1dB</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>1</minimum>
+                        <maximum>255</maximum>
+                        <default>10</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Set Mute</name>
+                <description>Mute or unmute a channel</description>
+                <params>
+                    <param>
+                        <name>IO</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Output</item>
+                            <item>Input</item>
+                        </items>
+                        <default>Output</default>
+                    </param>
+                    <param>
+                        <name>Channel</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>0</minimum>
+                        <maximum>4</maximum>
+                        <default>0</default>
+                    </param>
+                    <param>
+                        <name>State</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Off</item>
+                            <item>On</item>
+                        </items>
+                        <default>Off</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Matrix Connect</name>
+                <description>Connect or disconnect an input to an output</description>
+                <params>
+                    <param>
+                        <name>Input</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>1</minimum>
+                        <maximum>4</maximum>
+                        <default>1</default>
+                    </param>
+                    <param>
+                        <name>Output</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>1</minimum>
+                        <maximum>4</maximum>
+                        <default>1</default>
+                    </param>
+                    <param>
+                        <name>Connect</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Connect</item>
+                            <item>Disconnect</item>
+                        </items>
+                        <default>Connect</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Set Working Mode</name>
+                <description>Set channel group working mode</description>
+                <params>
+                    <param>
+                        <name>Group</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Channels 1 and 2</item>
+                            <item>Channels 3 and 4</item>
+                        </items>
+                        <default>Channels 1 and 2</default>
+                    </param>
+                    <param>
+                        <name>Mode</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>Stereo</item>
+                            <item>Mono</item>
+                            <item>Bridge</item>
+                            <item>Matrix</item>
+                        </items>
+                        <default>Stereo</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Set Line Mic</name>
+                <description>Switch input between line and microphone sensitivity</description>
+                <params>
+                    <param>
+                        <name>Channel</name>
+                        <type>RANGED_INTEGER</type>
+                        <minimum>1</minimum>
+                        <maximum>4</maximum>
+                        <default>1</default>
+                    </param>
+                    <param>
+                        <name>Sensitivity</name>
+                        <type>LIST</type>
+                        <items>
+                            <item>0 dBu (Line)</item>
+                            <item>6 dBu (Mic)</item>
+                        </items>
+                        <default>0 dBu (Line)</default>
+                    </param>
+                </params>
+            </command>
+            <command>
+                <name>Query Current Scene</name>
+                <description>Read current scene number from device</description>
+            </command>
+            <command>
+                <name>Query Device IP</name>
+                <description>Read device IP address</description>
+            </command>
+            <command>
+                <name>Page Device</name>
+                <description>Make the device beep/page (function 0x1A)</description>
+            </command>
+            <command>
+                <name>Send Raw Hex</name>
+                <description>Send raw hex bytes to device. Useful for advanced or unsupported commands.</description>
+                <params>
+                    <param>
+                        <name>Hex</name>
+                        <type>STRING</type>
+                        <default>A5 C3 3C 5A FF 36 1A 00 EE</default>
+                    </param>
+                </params>
+            </command>
+        </commands>
+
+        <actions>
+            <action>
+                <name>Reconnect</name>
+                <command>LUA_ACTION</command>
+                <params>
+                    <param>
+                        <name>ACTION</name>
+                        <value>Reconnect</value>
+                    </param>
+                </params>
+            </action>
+            <action>
+                <name>Query State</name>
+                <command>LUA_ACTION</command>
+                <params>
+                    <param>
+                        <name>ACTION</name>
+                        <value>QueryState</value>
+                    </param>
+                </params>
+            </action>
+        </actions>
+
+        <events>
+            <event>
+                <id>1</id>
+                <name>Connected</name>
+                <description>Fires when the device connection is established.</description>
+            </event>
+            <event>
+                <id>2</id>
+                <name>Disconnected</name>
+                <description>Fires when the device connection is lost.</description>
+            </event>
+            <event>
+                <id>3</id>
+                <name>Scene Changed</name>
+                <description>Fires when the current scene changes.</description>
+            </event>
+            <event>
+                <id>4</id>
+                <name>Command Failed</name>
+                <description>Fires when the device responds with a failure code.</description>
+            </event>
+        </events>
+    </config>
+
+    <capabilities>
+        <number_of_outputs>4</number_of_outputs>
+        <number_of_inputs>4</number_of_inputs>
+        <has_volume>True</has_volume>
+        <has_mute>True</has_mute>
+        <has_discrete_volume>True</has_discrete_volume>
+        <has_discrete_mute>True</has_discrete_mute>
+    </capabilities>
+</devicedata>
