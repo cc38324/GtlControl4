@@ -15,15 +15,19 @@ GTL 智能家居 / 影音设备的 Control4 (DriverWorks) 驱动集合。
 ├── driver.xml            # GTL2750 驱动清单
 ├── driver.lua            # GTL2750 驱动逻辑
 ├── icons/
-│   ├── device_sm.png     # 32x32 设备图标
-│   ├── device_lg.png     # 300x300 设备图标
-│   └── gen_icons.py      # 图标生成脚本 (Pillow)
+│   ├── gen_icons.py      # 图标生成脚本 (Pillow)
+│   ├── device_sm.png     # 生成产物：32×32 设备图标（本地构建）
+│   └── device_lg.png     # 生成产物：300×300 设备图标（本地构建）
 ├── docs/
 │   ├── 用户说明书.md
 │   ├── 开发文档.md
 │   └── 协议命令表.md
 └── README.md
 ```
+
+> **关于 PNG 图标**：由于此仓库的远程上传通道不支持二进制文件，PNG 没有提交到
+> git，但提供了生成脚本 `icons/gen_icons.py`，可直接渲染出 Control4 风格的
+> 32×32 / 300×300 PNG。打包 `.c4z` 之前先运行一次即可。
 
 ## 快速开始
 
@@ -34,6 +38,12 @@ GTL 智能家居 / 影音设备的 Control4 (DriverWorks) 驱动集合。
 ## 打包为 .c4z
 
 ```bash
+# 1. 先生成 PNG 图标（仅需安装 Pillow）
+pip install Pillow
+python3 icons/gen_icons.py
+# → icons/device_sm.png, icons/device_lg.png
+
+# 2. 打包驱动
 zip -r gtl2750.c4z driver.xml driver.lua icons docs
 ```
 
